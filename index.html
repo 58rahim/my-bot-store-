@@ -2,52 +2,26 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر البوتات</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #1a1a1a; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+        .card { background: #2d2d2d; border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #444; }
+        button { background: #0088cc; color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: bold; }
+    </style>
 </head>
-<body class="bg-[#1c1c1c] text-white p-5">
-    <div class="max-w-md mx-auto">
-        <h1 class="text-2xl font-bold text-center mb-8 text-blue-400">🛍️ متجر البوتات الذكي</h1>
-        
-        <div class="bg-[#2b2b2b] p-5 rounded-2xl shadow-xl border border-gray-700 mb-6">
-            <h2 class="text-xl font-bold mb-2">بوت تداول الذهب (v1.0)</h2>
-            <p class="text-gray-400 text-sm mb-4">بوت احترافي يعمل على منصات MetaTrader.</p>
-            <div class="flex justify-between items-center">
-                <span class="text-green-400 font-bold text-xl">150$</span>
-                <button onclick="order('بوت الذهب')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-bold transition-all active:scale-90">
-                    طلب الآن
-                </button>
-            </div>
-        </div>
-
-        <div class="bg-[#2b2b2b] p-5 rounded-2xl shadow-xl border border-gray-700">
-            <h2 class="text-xl font-bold mb-2">قالب n8n للأتمتة</h2>
-            <p class="text-gray-400 text-sm mb-4">أتمتة كاملة لربط ووردبريس بتلغرام.</p>
-            <div class="flex justify-between items-center">
-                <span class="text-green-400 font-bold text-xl">45$</span>
-                <button onclick="order('قالب n8n')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-xl font-bold transition-all active:scale-90">
-                    طلب الآن
-                </button>
-            </div>
-        </div>
+<body>
+    <h1>🛍️ متجرنا الذكي</h1>
+    <div class="card">
+        <h2>بوت التداول الآلي</h2>
+        <p>السعر: 150$</p>
+        <button onclick="sendData('بوت تداول')">طلب الآن</button>
     </div>
-
     <script>
         const tg = window.Telegram.WebApp;
-        tg.expand(); // لجعل التطبيق يفتح بكامل الشاشة
-
-        function order(name) {
-            // إرسال البيانات للبوت وإظهار تنبيه
-            tg.sendData("طلب شراء: " + name);
-            tg.showPopup({
-                title: 'تم إرسال الطلب',
-                message: 'سيتم التواصل معك عبر البوت لتأكيد الطلب.',
-                buttons: [{type: 'ok'}]
-            });
+        function sendData(item) {
+            tg.sendData(item);
         }
     </script>
 </body>
 </html>
-
