@@ -1,21 +1,36 @@
-async function loadProducts() {
-    // استبدل الرابط برابط موقعك الحقيقي لاحقاً
-    const response = await fetch('https://your-site.com/wp-json/wp/v2/tg_products');
-    const products = await response.json();
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>متجر البوتات</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-5">
+    <h1 class="text-2xl font-bold text-center mb-6">قائمة المنتجات</h1>
     
-    const appContainer = document.getElementById('app');
-    appContainer.innerHTML = ''; // مسح المحتوى التجريبي
+    <div class="bg-white p-4 rounded-lg shadow-md mb-4 text-center">
+        <h2 class="text-xl font-bold">بوت تداول ذهب</h2>
+        <p class="text-blue-600 font-bold my-2">150$</p>
+        <button onclick="sendOrder('بوت تداول ذهب')" class="bg-green-500 text-white px-10 py-2 rounded-full font-bold">
+            طلب الآن
+        </button>
+    </div>
 
-    products.forEach(product => {
-        appContainer.innerHTML += `
-            <div class="product-card p-4 rounded-xl shadow-sm border border-gray-200">
-                <img src="${product.featured_media_url}" class="w-full h-40 object-cover rounded-lg mb-4">
-                <h2 class="text-xl font-semibold mb-2">${product.title.rendered}</h2>
-                <div class="flex justify-between items-center">
-                    <button onclick="orderProduct('${product.title.rendered}')" class="btn-primary px-6 py-2 rounded-lg font-medium">طلب الآن</button>
-                </div>
-            </div>
-        `;
-    });
-}
-window.onload = loadProducts;
+    <div class="bg-white p-4 rounded-lg shadow-md text-center">
+        <h2 class="text-xl font-bold">قالب n8n متكامل</h2>
+        <p class="text-blue-600 font-bold my-2">45$</p>
+        <button onclick="sendOrder('قالب n8n')" class="bg-green-500 text-white px-10 py-2 rounded-full font-bold">
+            طلب الآن
+        </button>
+    </div>
+
+    <script>
+        // هذا الجزء الصغير ضروري جداً لكي يفهم التلغرام أنك ضغطت الزر
+        const tg = window.Telegram.WebApp;
+        function sendOrder(productName) {
+            tg.sendData(productName); // يرسل اسم المنتج للبوت الخاص بك
+        }
+    </script>
+</body>
+</html>
